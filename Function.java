@@ -18,6 +18,33 @@ public class Function{
 	ret = ret.substring(0, ret.length() - 2);
 	return ret;
     }
+    //evaluates the value of the function at x = value
+    public double evalFunc(double value){
+	double x = 0.0;
+	for (int i = 0; i < polynomial.size() - 1; i += 2){
+	    x += evalpartofFunc(polynomial.get(i), polynomial.get(i + 1), value);
+	    //System.out.println(evalpartofFunc(polynomial.get(i), polynomial.get(i + 1), value));
+	}
+	return x;
+    }
+    //helper method for evalFunc, evaluates each term of a polynomial
+    public double evalpartofFunc(Comparable co, Comparable exp, double value){
+	double x = (int) co;
+	for (int i = 0; i < (int) exp; i++){
+	    x *= value;
+	}
+	return x;
+    }
+    //checks if there is value between -10 and 10 in which the value is 0
+    public static double localMax(Function x){
+	double epsilon = 0.000001;//very tiny value
+	for (double d = 10; d >= -10; d -= 0.000001){
+	    if ((x.evalFunc(d) < epsilon) && (x.evalFunc(d) > (-1 * epsilon))){
+		return d;
+	    }
+	}
+	return -11.0;
+    }
     //returns the ArrayList with the derivative of the polynomial          
     public ArrayList takeDerivative(){
         for (int i = 0; i < polynomial.size(); i++){
@@ -52,8 +79,15 @@ public class Function{
         function.add(0);
         Function x = new Function(3, function);
 	System.out.println(function);
+	System.out.println("y-intercept: (0," + x.evalFunc(0) + ")");
 	System.out.println(x);//prints out the actual polynomial
+	System.out.println(x.evalFunc(2));//should return 71
+	System.out.println(x.evalFunc(1));//should return 24
+	System.out.println(x.evalFunc(1.5));//should return 43.0
+	System.out.println(x.evalFunc(-1));//should return 8.0
+	System.out.println(x.evalFunc(-1.5));//should return 11.5
         System.out.println(x.takeDerivative());//should return [6,2,18,1,6,0]  
-	System.out.println(x);
+	System.out.println(x);//should return the polynomial form: 6x^2 + 18x^1+ 6x^0
+	System.out.println(localMax(x));
     }
 }

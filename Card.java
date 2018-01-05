@@ -4,20 +4,35 @@ public class Card{
     public Card(int v){
 	value = (v % 13) + 2;
 	if (v > 38){
-	    suit = "diamond";
+	    suit = "diamonds";
 	}
 	else if (v > 25){
-	    suit = "club";
+	    suit = "clubs";
 	}
 	else if (v > 12){
-	    suit = "heart";
+	    suit = "hearts";
 	}
 	else{
-	    suit = "spade";
+	    suit = "spades";
 	}
     }
     public String toString(){
-	return value + " of " + suit + "s";
+	if (value <= 10){
+	    return value + " of " + suit;
+	}
+	else if (value == 11){
+	    return "Jack of " + suit;
+	}
+	else if (value == 12){
+	    return "Queen of " + suit;
+	}
+	else if (value == 13){
+	    return "King of " + suit;
+	}
+	else{
+	    return "Ace of " + suit;
+	}
+	    
     }
     public int getValue(){
 	return value;

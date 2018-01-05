@@ -12,8 +12,14 @@ public class Card{
 	else if (v > 12){
 	    suit = "hearts";
 	}
-	else{
+	else if (v >= 0){
 	    suit = "spades";
+	}
+	else{
+	    System.out.println("cannot create card xd");
+	    System.out.println("value set to 0 and suit set to \"diamonds\"");
+	    v = 0;
+	    suit = "diamonds";
 	}
     }
     public String toString(){

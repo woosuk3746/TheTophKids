@@ -24,13 +24,15 @@ public class Player{//this class will eventually be abstract
     public String toString(){
 	String retStr = name + ": ";
 	for (Card c: hand){
-	    retStr += c + ",";
+	    retStr += c + ", ";
 	}
-	return retStr;
+	return retStr.substring(0,retStr.length()-2);
     }
     //public abstract void evaluate();
     public static void main(String[] args){
-	Player Aidan = new Player("Aidan", 2);
+	Player Aidan = new Player("Aidan", 4);
+	Aidan.addCard(new Card((int) (Math.random() * 52)));
+	Aidan.addCard(new Card((int) (Math.random() * 52)));
 	Aidan.addCard(new Card((int) (Math.random() * 52)));
 	Aidan.addCard(new Card((int) (Math.random() * 52)));
 	System.out.println(Aidan);

@@ -21,6 +21,9 @@ public class Player{//this class will eventually be abstract
 	hand[currentCard] = c;
 	currentCard++;
     }
+    public Card getCard(int i){
+	return hand[i];
+    }
     public String toString(){
 	String retStr = name + ": ";
 	for (Card c: hand){

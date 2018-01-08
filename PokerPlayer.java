@@ -58,7 +58,7 @@ public class PokerPlayer extends Player{
 	return highestValue;
     }
     public boolean isFullHouse(){
-	return false;
+	return (isThreeOfAKind() && isPair());
     }	    
     public boolean isFlush(){
 	int heartCounter = 0;
@@ -68,7 +68,7 @@ public class PokerPlayer extends Player{
 	for (int i = 0; i < temp.length; i++){
 	    if (temp[i].getSuit().equals("hearts")){
 		heartCounter++;
-		System.out.println(heartCounter);
+		//System.out.println(heartCounter);
 	    }
 	    if (temp[i].getSuit().equals("diamonds")){
                 diamondCounter++;
@@ -155,8 +155,32 @@ public class PokerPlayer extends Player{
     public boolean isThreeOfAKind(){
 	return (numberOfKind() == 3);
     }
+    public boolean isTwoPair(){
+	for (int i = 0; i < temp.length - 2; i++){
+	    if (temp[i].getValue() == temp[i + 1].getValue()){
+		if (temp[i + 1].getValue() != temp[i + 2].getValue()){
+		    for (int j = i + 3; j < temp.length - 1; j++){
+			if (temp[j].getValue() == temp[j + 1].getValue()){
+			    return true;
+			}
+		    }
+		}
+	    }
+	}
+	return false;
+    }
     public boolean isPair(){
-	return (numberOfKind() == 2);
+	if (numberOfKind() == 2){
+	    return true;
+	}
+	for (int i = 0; i < temp.length - 2; i++){
+	    if (temp[i].getValue() == temp[i + 1].getValue()){
+		if (temp[i + 1].getValue() != temp[i + 2].getValue()){
+		    return true;
+		}
+	    }
+	}
+	return false;
     }
     public int highestValue(){
 	for (int i = temp.length - 1; i >= 0; i--){
@@ -180,7 +204,7 @@ public class PokerPlayer extends Player{
 	Aidan.addCard(new Card(7));
 	Aidan.addCard(new Card(22));
 	Aidan.addCard(new Card(49));
-	Aidan.addCard(new Card(25));
+	Aidan.addCard(new Card(20));
 	((PokerPlayer) Aidan).bubbleSort();
 	System.out.println(Aidan);
 	((PokerPlayer) Aidan).printTemp();
@@ -188,7 +212,7 @@ public class PokerPlayer extends Player{
 	System.out.println(((PokerPlayer) Aidan).isStraightFlush());
 	System.out.println(((PokerPlayer) Aidan).isFlush());
 	System.out.println(((PokerPlayer) Aidan).isStraight());
-	((PokerPlayer) Aidan).printTemp();
+	System.out.println(((PokerPlayer) Aidan).highestValue());
 	Player AShao = new PokerPlayer("Andrew" , 7);
 	AShao.addCard(new Card(25));
 	AShao.addCard(new Card(12));
@@ -203,5 +227,20 @@ public class PokerPlayer extends Player{
 	System.out.println(((PokerPlayer) AShao).isFourOfAKind());
 	System.out.println(((PokerPlayer) AShao).isThreeOfAKind());
 	System.out.println(((PokerPlayer) AShao).isPair());
+	System.out.println(((PokerPlayer) AShao).highestValue());
+	Player Woosuk = new PokerPlayer("Woosuk" , 7);
+	Woosuk.addCard(new Card(25));
+	Woosuk.addCard(new Card(12));
+	Woosuk.addCard(new Card(14));
+	Woosuk.addCard(new Card(20));
+	Woosuk.addCard(new Card(40));
+	Woosuk.addCard(new Card(5));
+	Woosuk.addCard(new Card(37));
+	((PokerPlayer) Woosuk).bubbleSort();
+	System.out.println(Woosuk);
+	((PokerPlayer) Woosuk).printTemp();
+	System.out.println(((PokerPlayer) Woosuk).isTwoPair());
+	System.out.println(((PokerPlayer) Woosuk).isFullHouse());
+	System.out.println(((PokerPlayer) Woosuk).highestValue());
     }
 }

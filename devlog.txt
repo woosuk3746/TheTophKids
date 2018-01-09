@@ -1,10 +1,10 @@
-<Team Name (without word "team")>
-<Member Bubbles>
-<Member Buttercup>
-<Member Blossom>
-pd <pd#>
+TheTophKids
+Aidan Griffin
+Woosuk Lee
+Andrew Shao
+pd 1
 ---------------------
-<Project>
+Casino
 
 
 
@@ -70,9 +70,9 @@ LESSONS LEARNED
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-yyyy-mm-dd
+2018-01-08
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+Woosuk Lee :: Made Woo.java compilable and runnable with main method and added Keyboard.java for us to incorporate user input
+Aidan Griffin :: coded the isFullHouse() and isTwoPair() methods in PokerPlayer
+Andrew Shao :: updated our README file
 ==============================================================

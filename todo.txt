@@ -1,0 +1,13 @@
+The Toph Kids
+Aidan Griffin, Woosuk Lee, and Andrew Shao
+APCS1 pd1
+HW64 -- Checklist Manifesto
+2018-01-10
+
+The biggest priority of this final project is to finish coding Texas Hold 'em. To do this, our group decided to change some of the ways our game works and make subclasses for Player.java, which would create a Player object that is specific to poker or blackjack. Moreover, we will still be maintaining the usage of having Blackjava.java and TexasHoldem.java as subclasses of CasinoGames.java.
+
+1. Create the java files for what was stated above.
+2. Finish TexasHoldem.java and PokerPlayer.java (subclass of Player.java, this class is more specific to players playing Texas Hold 'em). Poker requires more challenging mechanisms for checking for the winners / hierarchies of the card groups.
+3. Finish Blackjack.java and BlackjackPlayer.java (because blackjack is less complicated than poker).
+4. Incorporate the "betting" system.
+

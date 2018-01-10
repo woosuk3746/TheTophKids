@@ -4,9 +4,6 @@ public class PokerPlayer extends Player{
 	super(n,s);
 	temp = new Card[s];
     }
-    public void evaluate(){
-	bubbleSort();
-    }
     public void bubbleSort(){
 	//copies elements of hand into temp
 	for (int k = 0; k < hand.length; k++){
@@ -196,6 +193,7 @@ public class PokerPlayer extends Player{
 	}
 	System.out.println();
     }
+    
     public static void main(String[] args){
 	Player Aidan = new PokerPlayer("Aidan", 7);
         Aidan.addCard(new Card(24));

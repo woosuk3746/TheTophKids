@@ -1,7 +1,7 @@
 public class PokerPlayer extends Player{
     private Card[] temp;//temporary storage for hand 
-    public PokerPlayer(String n, int s){
-	super(n,s);
+    public PokerPlayer(String n, int s, double b){
+	super(n,s,b);
 	temp = new Card[s];
     }
     public void bubbleSort(){
@@ -193,8 +193,9 @@ public class PokerPlayer extends Player{
 	}
 	System.out.println();
     }
+    
     public static void main(String[] args){
-	Player Aidan = new PokerPlayer("Aidan", 7);
+	Player Aidan = new PokerPlayer("Aidan", 7, 8000);
         Aidan.addCard(new Card(24));
         Aidan.addCard(new Card(23));
 	Aidan.addCard(new Card(21));
@@ -210,7 +211,7 @@ public class PokerPlayer extends Player{
 	System.out.println(((PokerPlayer) Aidan).isFlush());
 	System.out.println(((PokerPlayer) Aidan).isStraight());
 	System.out.println(((PokerPlayer) Aidan).highestValue());
-	Player AShao = new PokerPlayer("Andrew" , 7);
+	Player AShao = new PokerPlayer("Andrew" , 7, 8000);
 	AShao.addCard(new Card(25));
 	AShao.addCard(new Card(12));
 	AShao.addCard(new Card(14));
@@ -225,7 +226,7 @@ public class PokerPlayer extends Player{
 	System.out.println(((PokerPlayer) AShao).isThreeOfAKind());
 	System.out.println(((PokerPlayer) AShao).isPair());
 	System.out.println(((PokerPlayer) AShao).highestValue());
-	Player Woosuk = new PokerPlayer("Woosuk" , 7);
+	Player Woosuk = new PokerPlayer("Woosuk" , 7, 8000);
 	Woosuk.addCard(new Card(25));
 	Woosuk.addCard(new Card(12));
 	Woosuk.addCard(new Card(14));

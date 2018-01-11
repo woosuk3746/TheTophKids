@@ -1,58 +1,82 @@
 import cs1.Keyboard;
 public class Woo{
+    private static double bigBlind;//big blind the user or AI has to pay
+    private static double smallBlind;//small blind the user or AI has to pay
     public static void main (String[] args){
 	System.out.println("=========================");
 	System.out.println("Welcome to the Toph Casino Games");
 	System.out.println("=========================");
-	
-	System.out.println("Choose Your Game (Enter the number of the game)");
-	System.out.println("1. Texas Hold 'Em");
-	System.out.println("2. Blackjack");
-	int s = Keyboard.readInt();
-	if (s == 1){
-	    Player Tim = new PokerPlayer("Tim", 2);
-	    Tim.addCard(new Card((int) (52 * Math.random())));
-	    Tim.addCard(new Card((int) (52 * Math.random())));
-	    ((PokerPlayer) Tim).bubbleSort();
-	    System.out.println(Tim);
-	    ((PokerPlayer) Tim).printTemp();
-	    Player Andrew = new PokerPlayer("Andrew", 2);
-	    Andrew.addCard(new Card((int) (52 * Math.random())));
-	    Andrew.addCard(new Card((int) (52 * Math.random())));
-	    ((PokerPlayer) Andrew).bubbleSort();
-	    System.out.println(Andrew);
-	    ((PokerPlayer) Andrew).printTemp();
-
-	    
-	    Player Tim2 = new PokerPlayer("Tim", 7);
-	    Tim2.addCard(Tim.getCard(0));
-	    Tim2.addCard(Tim.getCard(1));
-	    Card a = new Card((int) (Math.random() * 52));
-	    Card b = new Card((int) (Math.random() * 52));
-	    Card c = new Card((int) (Math.random() * 52));
-	    Card d = new Card((int) (Math.random() * 52));
-	    Card e = new Card((int) (Math.random() * 52));
-	    Tim2.addCard(a);
-	    Tim2.addCard(b);
-	    Tim2.addCard(c);
-	    Tim2.addCard(d);
-	    Tim2.addCard(e);
-	    ((PokerPlayer) Tim2).bubbleSort();
-	    System.out.println(Tim2);
-
-	    Player Andrew2 = new PokerPlayer("Andrew", 7);
-	    Andrew2.addCard(Andrew.getCard(0));
-	    Andrew2.addCard(Andrew.getCard(1));
-	    Andrew2.addCard(a);
-	    Andrew2.addCard(b);
-	    Andrew2.addCard(c);
-	    Andrew2.addCard(d);
-	    Andrew2.addCard(e);
-	    ((PokerPlayer) Andrew2).bubbleSort();
-	    System.out.println(Andrew2);
-	}
-	else if (s == 2){
-	    
+	for (int i = 0; i < 3; i++){
+	    System.out.println("Choose Your Game (Enter the number of the game)");
+	    System.out.println("1. Texas Hold 'Em");
+	    System.out.println("2. Blackjack");
+	    int s = Keyboard.readInt();
+	    if (s == 1){
+		CasinoGame.makeADeck();
+		CasinoGame.shuffle();
+		PokerPlayer user = new PokerPlayer("user", 7, 2000);
+		user.withdraw(40);
+		user.addCard(CasinoGame.deck[0]);
+		user.addCard(CasinoGame.deck[1]);
+		System.out.println("User's Hand:" + CasinoGame.deck[0] + ", " + CasinoGame.deck[1]);
+		PokerPlayer AI = new PokerPlayer("The Legendary AI", 7,2000);
+		AI.withdraw(20);
+                AI.addCard(CasinoGame.deck[2]);
+                AI.addCard(CasinoGame.deck[3]);
+		System.out.println("Make a decision " + "1. Fold\n" + "2. Call\n" + "3. Bet\n"); 
+		int t = Keyboard.readInt();
+		if (t == 1){
+		    AI.deposit(60);
+		}
+		else if (t == 2){
+		    user.addCard(CasinoGame.deck[4]);
+		    user.addCard(CasinoGame.deck[5]);
+		    user.addCard(CasinoGame.deck[6]);
+		    user.addCard(CasinoGame.deck[7]);
+		    user.addCard(CasinoGame.deck[8]);
+		    user.bubbleSort();
+		    System.out.println("User's Hand: ");
+		    user.printTemp();
+		    if (user.isRoyalFlush()){
+			System.out.println("The user has a Royal Flush!");
+		    }
+		    else if (user.isStraightFlush()){
+                        System.out.println("The user has a Straight Flush with ");
+                    }
+		    else if (user.isFourOfAKind()){
+                        System.out.println("The user has a Four Of A Kind ");
+                    }
+		    else if (user.isFullHouse()){
+                        System.out.println("The user has a Full House " );
+                                           
+                    }
+		    else if (user.isFlush()){
+                        System.out.println("The user has a flush ");
+					   
+                    }
+		    else if (user.isStraight()){
+                        System.out.println("The user has a straight ");
+                    }
+		    else if (user.isThreeOfAKind()){
+                        System.out.println("The user has a triple ");
+                    }
+		    else if (user.isTwoPair()){
+                        System.out.println("The user has two pairs ");
+                    }
+		    else if (user.isPair()){
+                        System.out.println("The user has a pair ");
+                    }
+		    else{
+			System.out.println("The user has a High Card of " + user.highestValue());
+		    }
+		}
+	    }
+	    else if (s == 2){
+		
+	    }
+	    else{
+		System.out.println("Try again! Enter a proper number!");
+	    }
 	}
     }
 }

@@ -1,13 +1,15 @@
 public class Player{//this class will eventually be abstract
     protected Card[] hand;
     protected int rank;
+    protected double balance;
     private String name;
     private int size;
     private int currentCard;
-    public Player(String n, int s){
+    public Player(String n, int s, double b){
 	name = n;
 	hand = new Card[s];
 	size = s;
+	balance = b;
 	currentCard = 0;
     }
     public Card[] getCards(){
@@ -31,9 +33,18 @@ public class Player{//this class will eventually be abstract
 	}
 	return retStr.substring(0,retStr.length()-2);
     }
+    public double getBalance(){
+	return balance;
+    }
+    public void deposit(double amnt){
+	balance += amnt;
+    }
+    public void withdraw(double amnt){
+        balance -= amnt;
+    }
     //public abstract void evaluate();
     public static void main(String[] args){
-	Player Aidan = new Player("Aidan", 4);
+	Player Aidan = new Player("Aidan", 4, 2000);
 	Aidan.addCard(new Card((int) (Math.random() * 52)));
 	Aidan.addCard(new Card((int) (Math.random() * 52)));
 	Aidan.addCard(new Card((int) (Math.random() * 52)));

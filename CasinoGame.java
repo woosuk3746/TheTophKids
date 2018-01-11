@@ -16,8 +16,7 @@ public abstract class CasinoGame{
 	return balance;
     }
 
-    public abstract void play();
-
+    public abstract Player play(PokerPlayer a, PokerPlayer b);
     public static void makeADeck(){
         deck = new Card[52];
 	for(int i = 0; i < 52; i++){

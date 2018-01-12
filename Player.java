@@ -3,7 +3,7 @@ public class Player{//this class will eventually be abstract
     protected int rank;
     protected double balance;
     private String name;
-    private int size;
+    protected int size;
     private int currentCard;
     public Player(String n, int s, double b){
 	name = n;

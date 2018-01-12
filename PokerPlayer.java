@@ -39,15 +39,17 @@ public class PokerPlayer extends Player{
 	int highestValue = 1;
 	for (int i = 0; i < temp.length; i++){
 	    for (int j = i + 1; j < temp.length; j++){
-		//System.out.println("At i = " + i + ":" + temp[i].getValue());
-		//System.out.println("At j = " + j + ":" + temp[j].getValue());
-		if (temp[i].getValue() == temp[j].getValue()){
-		    valueCounter++;
-		    //System.out.println(valueCounter);
-		}
-		if (valueCounter > highestValue){
-		    highestValue = valueCounter;
-		    //System.out.println(highestValue);
+		if (temp[i] != null){
+		    //System.out.println("At i = " + i + ":" + temp[i].getValue());
+		    //System.out.println("At j = " + j + ":" + temp[j].getValue());
+		    if (temp[i].getValue() == temp[j].getValue()){
+			valueCounter++;
+			//System.out.println(valueCounter);
+		    }
+		    if (valueCounter > highestValue){
+			highestValue = valueCounter;
+			//System.out.println(highestValue);
+		    }
 		}
 	    }
 	    valueCounter = 1;
@@ -156,7 +158,7 @@ public class PokerPlayer extends Player{
 	for (int i = 0; i < temp.length - 2; i++){
 	    if (temp[i].getValue() == temp[i + 1].getValue()){
 		if (temp[i + 1].getValue() != temp[i + 2].getValue()){
-		    for (int j = i + 3; j < temp.length - 1; j++){
+		    for (int j = i + 1; j < temp.length - 1; j++){
 			if (temp[j].getValue() == temp[j + 1].getValue()){
 			    return true;
 			}
@@ -171,9 +173,11 @@ public class PokerPlayer extends Player{
 	    return true;
 	}
 	for (int i = 0; i < temp.length - 2; i++){
-	    if (temp[i].getValue() == temp[i + 1].getValue()){
-		if (temp[i + 1].getValue() != temp[i + 2].getValue()){
-		    return true;
+	    if (temp[i] != null){
+		if (temp[i].getValue() == temp[i + 1].getValue()){
+		    if (temp[i + 1].getValue() != temp[i + 2].getValue()){
+			return true;
+		    }
 		}
 	    }
 	}

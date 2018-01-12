@@ -1,4 +1,4 @@
-public abstract class CasinoGame{
+public class CasinoGame{
     /****************
      *instance vars*
      ****************/
@@ -15,8 +15,6 @@ public abstract class CasinoGame{
     public double getBalance(){
 	return balance;
     }
-
-    public abstract Player play(PokerPlayer a, PokerPlayer b);
     public static void makeADeck(){
         deck = new Card[52];
 	for(int i = 0; i < 52; i++){

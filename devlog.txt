@@ -72,7 +72,18 @@ LESSONS LEARNED
 
 2018-01-08
 --------------------------------------------------------------
-Woosuk Lee :: Made Woo.java compilable and runnable with main method and added Keyboard.java for us to incorporate user input
-Aidan Griffin :: coded the isFullHouse() and isTwoPair() methods in PokerPlayer
-Andrew Shao :: updated our README file
+Woosuk Lee : Made Woo.java compilable and runnable with main method and added Keyboard.java for us to incorporate user input
+Aidan Griffin : coded the isFullHouse() and isTwoPair() methods in PokerPlayer(the last two methods we were missing)
+Andrew Shao : updated our README file
 ==============================================================
+2018-01-09
+--------------------------------------------------------------
+Woosuk Lee : Wrote our to do checklist
+Andrew Shao: Helped Woosuk craft the to do checklist
+Aidan Griffin : Wrote our flowchart that we handed in
+==============================================================
+2018-01-10
+Andrew Shao : coded the blackjack game with all its methods and it works!
+Aidan Griffin : added basic template of playing poker capibility in terminal. 
+Got it to successfully print out the hand the user had succesfully
+Woosuk/Aidan : worked on TexasHoldem.java's play method which returns the winner of a game. We can and probably should change the name of the method to something more suit-able(no pun intended)

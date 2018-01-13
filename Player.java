@@ -2,7 +2,7 @@ public class Player{//this class will eventually be abstract
     protected Card[] hand;
     protected int rank;
     protected double balance;
-    private String name;
+    protected String name;
     protected int size;
     private int currentCard;
     public Player(String n, int s, double b){

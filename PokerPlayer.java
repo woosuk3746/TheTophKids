@@ -4,6 +4,9 @@ public class PokerPlayer extends Player{
 	super(n,s,b);
 	temp = new Card[s];
     }
+    public String getName(){
+	return name;
+    }
     public void bubbleSort(){
 	//copies elements of hand into temp
 	for (int k = 0; k < hand.length; k++){
@@ -169,19 +172,7 @@ public class PokerPlayer extends Player{
 	return false;
     }
     public boolean isPair(){
-	if (numberOfKind() == 2){
-	    return true;
-	}
-	for (int i = 0; i < temp.length - 2; i++){
-	    if (temp[i] != null){
-		if (temp[i].getValue() == temp[i + 1].getValue()){
-		    if (temp[i + 1].getValue() != temp[i + 2].getValue()){
-			return true;
-		    }
-		}
-	    }
-	}
-	return false;
+	return numberOfKind() == 2;
     }
     public int highestValue(){
 	for (int i = temp.length - 1; i >= 0; i--){
@@ -197,7 +188,6 @@ public class PokerPlayer extends Player{
 	}
 	System.out.println();
     }
-    
     public static void main(String[] args){
 	Player Aidan = new PokerPlayer("Aidan", 7, 8000);
         Aidan.addCard(new Card(24));

@@ -87,3 +87,6 @@ Andrew Shao : coded the blackjack game with all its methods and it works!
 Aidan Griffin : added basic template of playing poker capibility in terminal. 
 Got it to successfully print out the hand the user had succesfully
 Woosuk/Aidan : worked on TexasHoldem.java's play method which returns the winner of a game. We can and probably should change the name of the method to something more suit-able(no pun intended)
+==============================================================
+2018-01-13
+

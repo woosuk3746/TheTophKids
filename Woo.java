@@ -96,9 +96,9 @@ public class Woo{
 	}
     }
     public static void main(String[] args){
-	System.out.println("=========================");
-	System.out.println("Welcome to the Toph Casino Games");
-	System.out.println("=========================");
+	System.out.println("====================================");
+	System.out.println("* Welcome to the Toph Casino Games *");
+	System.out.println("====================================");
 	System.out.println("How many rounds of casino games do you want to play?");
 	int r = Keyboard.readInt();
 	for (int i = 0; i < r; i++){
@@ -221,7 +221,7 @@ public class Woo{
 		System.out.println("AI's Current Balance: " + AI.getBalance());
 	    }
 	    else if (s == 2){
-		
+            
 	    }
 	    else{
 		System.out.println("Try again! Enter a proper number!");

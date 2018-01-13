@@ -38,9 +38,16 @@ public class Player{//this class will eventually be abstract
     }
     public void deposit(double amnt){
 	balance += amnt;
+	System.out.println("This is a deposit.");
+	System.out.print("Name: " + name);
+	System.out.print("Balance: " + balance);
+	System.out.println(" amnt: " + amnt);
     }
     public void withdraw(double amnt){
         balance -= amnt;
+	System.out.println("This is a withdrawal.");
+	System.out.print("Name: " + name);
+	System.out.println("Balance: " + balance + "amnt: " + amnt);
     }
     //public abstract void evaluate();
     public static void main(String[] args){

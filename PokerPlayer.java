@@ -172,7 +172,7 @@ public class PokerPlayer extends Player{
 	return false;
     }
     public boolean isPair(){
-	return numberOfKind() == 2;
+	return (numberOfKind() == 2);
     }
     public int highestValue(){
 	for (int i = temp.length - 1; i >= 0; i--){

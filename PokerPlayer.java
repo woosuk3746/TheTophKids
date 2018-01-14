@@ -68,52 +68,63 @@ public class PokerPlayer extends Player{
 	int spadeCounter = 0;
 	int clubCounter = 0;
 	for (int i = 0; i < temp.length; i++){
-	    if (temp[i].getSuit().equals("hearts")){
-		heartCounter++;
-		//System.out.println(heartCounter);
-	    }
-	    if (temp[i].getSuit().equals("diamonds")){
-                diamondCounter++;
-            }
-	    if (temp[i].getSuit().equals("spades")){
-                spadeCounter++;
-            }
-	    if (temp[i].getSuit().equals("clubs")){
-                clubCounter++;
-            }
-	}
-	if (clubCounter >= 5){
-	    for (int j = 0; j < temp.length; j++){
-		if (!temp[j].getSuit().equals("club")){
-		    //temp[j] = null;
+	    if (temp[i] != null){
+		if (temp[i].getSuit().equals("hearts")){
+		    heartCounter++;
+		    //System.out.println(heartCounter);
+		}
+		if (temp[i].getSuit().equals("diamonds")){
+		    diamondCounter++;
+		}
+		if (temp[i].getSuit().equals("spades")){
+		    spadeCounter++;
+		}
+		if (temp[i].getSuit().equals("clubs")){
+		    clubCounter++;
 		}
 	    }
-	    return true;
+	    if (clubCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("club")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+	    }
+	    if (heartCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("heart")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+	    }
+	    if (spadeCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("spade")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+	    }
+	    if (diamondCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("diamond")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+		return false;
+	    }
 	}
-	if (heartCounter >= 5){
-            for (int j = 0; j < temp.length; j++){
-                if (!temp[j].getSuit().equals("heart")){
-                    //temp[j] = null;
-                }
-            }
-            return true;
-        }
-	if (spadeCounter >= 5){
-            for (int j = 0; j < temp.length; j++){
-                if (!temp[j].getSuit().equals("spade")){
-                    //temp[j] = null;
-                }
-            }
-            return true;
-        }
-	if (diamondCounter >= 5){
-            for (int j = 0; j < temp.length; j++){
-                if (!temp[j].getSuit().equals("diamond")){
-                    //temp[j] = null;
-                }
-            }
-            return true;
-        }
 	return false;
     }
     public boolean isStraight(){
@@ -123,18 +134,20 @@ public class PokerPlayer extends Player{
 	    //System.out.println("current index: " + i);
 	    //System.out.println("current card value: " + temp[i].getValue());
 	    //System.out.println("next card value: " + temp[i + 1].getValue());
-	    if (temp[i + 1].getValue() == temp[i].getValue() + 1){
-		if (counter == 0){
-		    arr[counter] = temp[i];
+	    if (temp[i] != null && temp[i + 1] != null){
+		if (temp[i + 1].getValue() == temp[i].getValue() + 1){
+		    if (counter == 0){
+			arr[counter] = temp[i];
+		    }
+		    counter++;
+		    arr[counter] = temp[i + 1];
+		    //System.out.println(counter);
+		    //System.out.println(arr[counter]);
 		}
-		counter++;
-		arr[counter] = temp[i + 1];
-		//System.out.println(counter);
-		//System.out.println(arr[counter]);
-	    }
-	    else if (temp[i + 1].getValue() != temp[i].getValue()){
-		if (counter < 4){
-		    counter = 0;
+		else if (temp[i + 1].getValue() != temp[i].getValue()){
+		    if (counter < 4){
+			counter = 0;
+		    }
 		}
 	    }
 	}
@@ -159,11 +172,13 @@ public class PokerPlayer extends Player{
     }
     public boolean isTwoPair(){
 	for (int i = 0; i < temp.length - 2; i++){
-	    if (temp[i].getValue() == temp[i + 1].getValue()){
-		if (temp[i + 1].getValue() != temp[i + 2].getValue()){
-		    for (int j = i + 1; j < temp.length - 1; j++){
-			if (temp[j].getValue() == temp[j + 1].getValue()){
-			    return true;
+	    if (temp[i] != null && temp[i + 1] != null && temp[i + 2] != null){
+		if (temp[i].getValue() == temp[i + 1].getValue()){
+		    if (temp[i + 1].getValue() != temp[i + 2].getValue()){
+			for (int j = i + 1; j < temp.length - 1; j++){
+			    if (temp[j].getValue() == temp[j + 1].getValue()){
+				return true;
+			    }
 			}
 		    }
 		}

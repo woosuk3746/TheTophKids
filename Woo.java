@@ -1,6 +1,8 @@
 import cs1.Keyboard;
 public class Woo{
     private static double ante;//ante the user and AI have to pay
+    private static boolean folded;//returns whether the AI has folded
+    private static double pot;
     public static void checkHand(PokerPlayer user){
 	if (user.isRoyalFlush()){
 	    System.out.println("The " + user.getName() + " has a Royal Flush!");
@@ -58,27 +60,112 @@ public class Woo{
     public static void dealRiver(PokerPlayer a){
 	a.addCard(CasinoGame.deck[8]);
     }
+    public static void calcBet(PokerPlayer AI, PokerPlayer user, double d){
+	double r = 10 * Math.random();
+	if (r > d){
+	    double a = ante + ante * Math.random();
+	    System.out.println("The AI bets " + (int) a);
+	    pot += (int) a;
+	    AI.withdraw((int) a);
+	    System.out.println("Make a decision: \n 1. Fold \n 2. Call");
+	    int s = Keyboard.readInt();
+	    if (s == 1){
+		System.out.println("The AI wins!");
+		AI.deposit(pot);
+	    }
+	    else if (s == 2){
+		pot += a;
+		user.withdraw(a);
+	    }	
+	}
+	else{
+	    System.out.println("The AI checks.");
+	}
+    }
+    public static void checkOrBet(PokerPlayer user, PokerPlayer AI){
+	folded = false;
+	System.out.println("Make a decision: \n 1. Check \n 2. Bet");
+	pot = 2 * ante;
+	int s = Keyboard.readInt();
+	if (s == 1){
+	    if (AI.isFlush()){
+		calcBet(AI,user, 0);
+	    }
+	    else if (AI.isStraight()){
+		calcBet(AI,user, 1);
+	    }
+	    else if (AI.isThreeOfAKind()){
+		calcBet(AI,user, 2);
+	    }
+	    else if (AI.isTwoPair()){
+		calcBet(AI,user, 3);
+	    }
+	    else if (AI.isPair()){
+                calcBet(AI,user, 4);
+            }
+	    else{
+		calcBet(AI,user, 9);
+	    }
+	}
+	else if (s == 2){
+	    System.out.println("How much?");
+	    double d = Keyboard.readDouble();
+	    pot += d;
+	    user.withdraw(d);
+	    double rand = 2000 * Math.random() - d;
+	    if (rand > 1200.00){
+		System.out.println("The AI calls!");
+		AI.withdraw(d);
+		pot += d;
+	    }
+	    else{
+		double c = 10 * Math.random();
+		if (c < 3.0){
+		    System.out.println("The AI calls!");
+		    AI.withdraw(d);
+		    pot += d;
+		}
+		else{
+		    System.out.println("The AI folds!");
+		    user.deposit(pot + 60);
+		    folded = true;
+		}
+	    }
+	}
+	System.out.println("Pot: " + pot);
+    }
     public static void playGame(PokerPlayer user, PokerPlayer AI){
+	folded = false;
 	dealFlop(user);
 	dealFlop(AI);
-	dealTurn(user);
-	dealTurn(AI);
-	dealRiver(user);
-	dealRiver(AI);
-	System.out.print(CasinoGame.deck[4] + " ");
-	System.out.print(CasinoGame.deck[5] + " ");
-	System.out.print(CasinoGame.deck[6] + " ");
-	System.out.print(CasinoGame.deck[7] + " ");
-	System.out.print(CasinoGame.deck[8] + " ");
-	System.out.println();
-	user.bubbleSort();
-	System.out.println("Your Hand: ");
 	System.out.println(user);
-	checkHand(user);	
-	AI.bubbleSort();
-	System.out.println("AI's Hand: ");
-	System.out.println(AI);
-	checkHand(AI);
+	checkOrBet(user, AI);
+	if (!folded){
+	    dealTurn(user);
+	    dealTurn(AI);
+	    System.out.println(user);
+	    checkOrBet(user, AI);
+	    if (!folded){
+		dealRiver(user);
+		dealRiver(AI);
+		System.out.println(user);
+		checkOrBet(user, AI);
+		System.out.print(CasinoGame.deck[4] + " ");
+		System.out.print(CasinoGame.deck[5] + " ");
+		System.out.print(CasinoGame.deck[6] + " ");
+		System.out.print(CasinoGame.deck[7] + " ");
+		System.out.print(CasinoGame.deck[8] + " ");
+		System.out.println();
+		user.bubbleSort();
+		System.out.println("Your Hand: ");
+		System.out.println(user);
+		checkHand(user);	
+		AI.bubbleSort();
+		System.out.println("AI's Hand: ");
+		System.out.println(AI);
+		checkHand(AI);
+	    }
+	}
     }
     public static void checkWinner(PokerPlayer user, PokerPlayer AI){
 	if (TexasHoldem.play(user, AI).equals(user)){
@@ -141,9 +228,11 @@ public class Woo{
 			    checkWinner(userGen, AIGen);
 			    if (TexasHoldem.play(userGen, AIGen).equals(userGen)){
 				user.deposit(60.0);
+				user.deposit(pot);
 			    }
 			    else if (TexasHoldem.play(userGen, AIGen).equals(AIGen)){
                                 AI.deposit(60.0);
+				AI.deposit(pot);
                             }
 			}
 			else{
@@ -159,9 +248,11 @@ public class Woo{
                             checkWinner(userGen, AIGen);
 			    if (TexasHoldem.play(userGen, AIGen).equals(userGen)){
                                 user.deposit(60.0);
+				user.deposit(pot);
                             }
 			    else if (TexasHoldem.play(userGen, AIGen).equals(AIGen)){
                                 AI.deposit(60.0);
+				AI.deposit(pot);
                             }
                         }
                         else{
@@ -177,9 +268,11 @@ public class Woo{
                             checkWinner(userGen, AIGen);
 			    if (TexasHoldem.play(userGen, AIGen).equals(userGen)){
                                 user.deposit(60.0);
+				user.deposit(pot);
                             }
 			    else if (TexasHoldem.play(userGen, AIGen).equals(AIGen)){
                                 AI.deposit(60.0);
+				AI.deposit(pot);
                             }
 			}
                         else{
@@ -257,12 +350,8 @@ public class Woo{
 		System.out.println("AI's Current Balance: " + AI.getBalance());
 	    }
 	    else if (s == 2){
-<<<<<<< HEAD
 		user = new BlackjackPlayer("User", 8, userBalance);
 		AI = new BlackjackPlayer("AI", 8, AIBalance);
-=======
-            
->>>>>>> 1eb1d904fb6377735f8831ae7c9eedbeb4f96475
 	    }
 	    else{
 		System.out.println("Try again! Enter a proper number!");

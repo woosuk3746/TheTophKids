@@ -63,13 +63,14 @@ public class Woo{
     public static void calcBet(PokerPlayer AI, PokerPlayer user, double d){
 	double r = 10 * Math.random();
 	if (r > d){
-	    double a = ante + ante * Math.random();
-	    System.out.println("The AI bets " + (int) a);
-	    pot += (int) a;
-	    AI.withdraw((int) a);
+	    int a = (int) (ante + ante * Math.random());
+	    System.out.println("The AI bets " + a);
+	    pot += a;
+	    AI.withdraw(a);
 	    System.out.println("Make a decision: \n 1. Fold \n 2. Call");
 	    int s = Keyboard.readInt();
 	    if (s == 1){
+		folded = true;
 		System.out.println("The AI wins!");
 		AI.deposit(pot);
 	    }
@@ -85,7 +86,6 @@ public class Woo{
     public static void checkOrBet(PokerPlayer user, PokerPlayer AI){
 	folded = false;
 	System.out.println("Make a decision: \n 1. Check \n 2. Bet");
-	pot = 2 * ante;
 	int s = Keyboard.readInt();
 	if (s == 1){
 	    if (AI.isFlush()){
@@ -127,7 +127,7 @@ public class Woo{
 		}
 		else{
 		    System.out.println("The AI folds!");
-		    user.deposit(pot + 60);
+		    user.deposit(pot);
 		    folded = true;
 		}
 	    }
@@ -170,11 +170,11 @@ public class Woo{
     public static void checkWinner(PokerPlayer user, PokerPlayer AI){
 	if (TexasHoldem.play(user, AI).equals(user)){
 	    System.out.println("The user won!");
-	    user.deposit(2 * ante);
+	    user.deposit(pot);
 	}
 	else if (TexasHoldem.play(user, AI).equals(AI)){
 	    System.out.println("Unfortunately, the AI won this battle!");
-	    AI.deposit(2 * ante);
+	    AI.deposit(pot);
 	}
     }
     public static void main(String[] args){
@@ -212,70 +212,62 @@ public class Woo{
                 AI.addCard(CasinoGame.deck[2]);
                 AI.addCard(CasinoGame.deck[3]);
 		System.out.println("Make a decision: \n" + "1. Fold\n" + "2. Call(30)\n" + "3. Raise\n");
+		pot = 2 * ante;
 		int t = Keyboard.readInt();
+		//Does following if user decides to fold
 		if (t == 1){
-		    AI.deposit(2 * ante);
+		    AI.deposit(pot);
 		}
+		//Does following if user decides to call
 		else if (t == 2){
 		    PokerPlayer AIGen = (PokerPlayer) AI;
 		    PokerPlayer userGen = (PokerPlayer) user;
 		    user.withdraw(30);
+		    pot += 30;
 		    System.out.println("The AI is thinking through his options...\n");
 		    double rand = 14.0 * Math.random();
 		    if (AIGen.isPair()){
 			if (rand < 13.5){
 			    System.out.println("The AI calls!");
+			    pot += 30;
 			    AI.withdraw(30.0);
 			    playGame(userGen, AIGen);
-			    checkWinner(userGen, AIGen);
+			    if (!folded){
+				checkWinner(userGen, AIGen);
+			    }
 			    if (TexasHoldem.play(userGen, AIGen).equals(userGen)){
-				user.deposit(60.0);
 				user.deposit(pot);
 			    }
-			    else if (TexasHoldem.play(userGen, AIGen).equals(AIGen)){
-                                AI.deposit(60.0);
-				AI.deposit(pot);
-                            }
 			}
 			else{
 			    System.out.println("The AI folds!");
-			    user.deposit(2 * ante + 30);
+			    user.deposit(pot);
 			}
 		    }
 		    else if (AIGen.highestValue() >= 11){
                         if (rand < 12.0){
                             System.out.println("The AI calls!");
                             AI.withdraw(30.0);
+			    pot += 30;
 			    playGame(userGen, AIGen);
-                            checkWinner(userGen, AIGen);
-			    if (TexasHoldem.play(userGen, AIGen).equals(userGen)){
-                                user.deposit(60.0);
-				user.deposit(pot);
-                            }
-			    else if (TexasHoldem.play(userGen, AIGen).equals(AIGen)){
-                                AI.deposit(60.0);
-				AI.deposit(pot);
-                            }
-                        }
-                        else{
-                            System.out.println("The AI folds!");
-			    user.deposit(2 * ante + 30);
+			    if (!folded){
+				checkWinner(userGen, AIGen);
+			    }
 			}
-                    }
+			else{
+			    System.out.println("The AI folds!");
+			    user.deposit(pot);
+			}
+		    }
                     else{
                         if (rand < 6.0){
                             System.out.println("The AI calls!");
 			    AI.withdraw(30.0);
+			    pot += 30;
 			    playGame(userGen, AIGen);
-                            checkWinner(userGen, AIGen);
-			    if (TexasHoldem.play(userGen, AIGen).equals(userGen)){
-                                user.deposit(60.0);
-				user.deposit(pot);
-                            }
-			    else if (TexasHoldem.play(userGen, AIGen).equals(AIGen)){
-                                AI.deposit(60.0);
-				AI.deposit(pot);
-                            }
+			    if (!folded){
+				checkWinner(userGen, AIGen);
+			    }
 			}
                         else{
                             System.out.println("The AI folds!");	    
@@ -294,16 +286,19 @@ public class Woo{
 			d = Keyboard.readDouble();
 		    }
 		    user.withdraw(d);
+		    
 		    System.out.println("The AI is thinking through his options ...\n");
 		    double rand = 14.0 * Math.random();
 		    if (AIGen.isPair()){
 			if (rand < 13.5){
 			    System.out.println("The AI calls!");
-			    AI.withdraw(d);
-			    ante += d;
+			    AI.withdraw(d + 30);
+			    pot += d + 30;
 			    System.out.println(user.getBalance());
 			    playGame(userGen, AIGen);
-			    checkWinner(userGen, AIGen);
+			    if (!folded){
+				checkWinner(userGen, AIGen);
+			    }
 			    System.out.println(user.getBalance());
 			}
 			else{
@@ -317,10 +312,12 @@ public class Woo{
 			if (rand < 10.0){
                             System.out.println("The AI calls!");
                             AI.withdraw(d);
-			    ante += d;
+			    pot += d;
 			    System.out.println(user.getBalance());
 			    playGame(userGen, AIGen);
-			    checkWinner(userGen, AIGen);
+			    if (!folded){
+				checkWinner(userGen, AIGen);
+			    }
 			    System.out.println(user.getBalance());
                         }
                         else{
@@ -334,10 +331,12 @@ public class Woo{
 			if (rand < 5.0){
 			    System.out.println("The AI calls!");
 			    AI.withdraw(d);
-			    ante += d;
+			    pot += d;
 			    System.out.println(user.getBalance());
 			    playGame(userGen, AIGen);
-			    checkWinner(userGen, AIGen);
+			    if (!folded){
+				checkWinner(userGen, AIGen);
+			    }
 			    System.out.println(user.getBalance());
 			}
 			else{

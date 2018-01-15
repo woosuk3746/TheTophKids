@@ -138,32 +138,41 @@ public class Woo{
 	folded = false;
 	dealFlop(user);
 	dealFlop(AI);
+	user.bubbleSort();
+	AI.bubbleSort();
 	System.out.println(user);
 	checkOrBet(user, AI);
 	if (!folded){
 	    dealTurn(user);
 	    dealTurn(AI);
+	    user.bubbleSort();
+	    AI.bubbleSort();
 	    System.out.println(user);
 	    checkOrBet(user, AI);
 	    if (!folded){
 		dealRiver(user);
 		dealRiver(AI);
+		user.bubbleSort();
+		AI.bubbleSort();
 		System.out.println(user);
 		checkOrBet(user, AI);
-		System.out.print(CasinoGame.deck[4] + " ");
-		System.out.print(CasinoGame.deck[5] + " ");
-		System.out.print(CasinoGame.deck[6] + " ");
-		System.out.print(CasinoGame.deck[7] + " ");
-		System.out.print(CasinoGame.deck[8] + " ");
-		System.out.println();
-		user.bubbleSort();
-		System.out.println("Your Hand: ");
-		System.out.println(user);
-		checkHand(user);	
-		AI.bubbleSort();
-		System.out.println("AI's Hand: ");
-		System.out.println(AI);
-		checkHand(AI);
+		if (!folded){
+		    System.out.println("Here were the community cards");
+		    System.out.print(CasinoGame.deck[4] + " ");
+		    System.out.print(CasinoGame.deck[5] + " ");
+		    System.out.print(CasinoGame.deck[6] + " ");
+		    System.out.print(CasinoGame.deck[7] + " ");
+		    System.out.print(CasinoGame.deck[8] + " ");
+		    System.out.println();
+		    user.bubbleSort();
+		    System.out.println("Your Hand: ");
+		    System.out.println(user);
+		    checkHand(user);	
+		    AI.bubbleSort();
+		    System.out.println("AI's Hand: ");
+		    System.out.println(AI);
+		    checkHand(AI);
+		}
 	    }
 	}
     }
@@ -181,9 +190,10 @@ public class Woo{
 	System.out.println("====================================");
 	System.out.println("* Welcome to the Toph Casino Games *");
 	System.out.println("====================================");
-    System.out.println("Please enter your name.");
-    String name = Keyboard.readString();
+	System.out.println("Please enter your name.");
+	String name = Keyboard.readString();
 	System.out.println("How many rounds of casino games do you want to play?");
+	System.out.println("Both the user and the AI will start of with a total of 2000 dollars worth of chips");
 	Player user = new PokerPlayer(name, 7, 2000);
 	Player AI = new PokerPlayer("AI", 7, 2000);
 	int r = Keyboard.readInt();
@@ -225,7 +235,10 @@ public class Woo{
 		    user.withdraw(30);
 		    pot += 30;
 		    System.out.println("The AI is thinking through his options...\n");
+		    AIGen.bubbleSort();
+		    userGen.bubbleSort();
 		    double rand = 14.0 * Math.random();
+		    System.out.println(AIGen.highestValue());
 		    if (AIGen.isPair()){
 			if (rand < 13.5){
 			    System.out.println("The AI calls!");

@@ -15,11 +15,13 @@ public class PokerPlayer extends Player{
 	int numPasses = hand.length - 1;
 	for (int i = 0; i < numPasses; i++){
 	    for (int j = 0; j < numPasses; j++){
-		if (temp[j].getValue() > temp[j + 1].getValue()){
-		    Card t = temp[j + 1];
-		    temp[j + 1] = temp[j];
-		    temp[j] = t;
-		}		
+		if (temp[j] != null && temp[j + 1] != null){
+		    if (temp[j].getValue() > temp[j + 1].getValue()){
+			Card t = temp[j + 1];
+			temp[j + 1] = temp[j];
+			temp[j] = t;
+		    }		
+		}
 	    }
 	}
     }
@@ -42,7 +44,7 @@ public class PokerPlayer extends Player{
 	int highestValue = 1;
 	for (int i = 0; i < temp.length; i++){
 	    for (int j = i + 1; j < temp.length; j++){
-		if (temp[i] != null){
+		if (temp[i] != null && temp[j] != null){
 		    //System.out.println("At i = " + i + ":" + temp[i].getValue());
 		    //System.out.println("At j = " + j + ":" + temp[j].getValue());
 		    if (temp[i].getValue() == temp[j].getValue()){

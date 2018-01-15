@@ -29,7 +29,7 @@ public class Player{//this class will eventually be abstract
     public String toString(){
 	String retStr = name + ": ";
 	for (Card c: hand){
-        if(c != null){
+	    if (c != null){
                 retStr += c + ", ";
             }
 	}    

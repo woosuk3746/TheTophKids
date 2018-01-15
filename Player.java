@@ -48,8 +48,9 @@ public class Player{//this class will eventually be abstract
     public void withdraw(double amnt){
         balance -= amnt;
 	System.out.println("This is a withdrawal.");
-	System.out.print(" Name: " + name);
-	System.out.println(" Balance: " + balance + " amnt: " + amnt);
+	System.out.println(" Name: " + name);
+	System.out.println(" Balance: " + balance);
+    System.out.println(" amnt: " + amnt);
     }
     public static void main(String[] args){
 	Player Aidan = new Player("Aidan", 4, 2000);

@@ -194,8 +194,8 @@ public class Woo{
 	String name = Keyboard.readString();
 	System.out.println("How many rounds of casino games do you want to play?");
 	System.out.println("Both the user and the AI will start of with a total of 2000 dollars worth of chips");
-	Player user = new PokerPlayer(name, 7, 2000);
-	Player AI = new PokerPlayer("AI", 7, 2000);
+	Player user = new Player(name, 7, 2000);
+	Player AI = new Player("AI", 7, 2000);
 	int r = Keyboard.readInt();
 	for (int i = 0; i < r; i++){
 	    System.out.println("Choose Your Game (Enter the number of the game)");

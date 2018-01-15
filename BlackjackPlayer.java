@@ -8,12 +8,14 @@ public class BlackjackPlayer extends Player {
 	int retInt = 0;
 	int aceCtr = 0;
 	for(Card x: hand) {
-	    if(x.getValue() == 14)
-		aceCtr++;
-	    else if (x.getValue() > 10)
-		retInt += 10;
-	    else
-		retInt += x.getValue();
+		if(x != null) {
+			if(x.getValue() == 14)
+				aceCtr++;
+			else if (x.getValue() > 10)
+				retInt += 10;
+			else
+				retInt += x.getValue();
+		}
 	}
 	if (aceCtr > 0 && 21 - retInt >= 11 + aceCtr - 1) {
 	    retInt += 11 + aceCtr - 1;

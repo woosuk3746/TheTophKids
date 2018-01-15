@@ -181,8 +181,10 @@ public class Woo{
 	System.out.println("====================================");
 	System.out.println("* Welcome to the Toph Casino Games *");
 	System.out.println("====================================");
+    System.out.println("Please enter your name.");
+    String name = Keyboard.readString();
 	System.out.println("How many rounds of casino games do you want to play?");
-	Player user = new PokerPlayer("User", 7, 2000);
+	Player user = new PokerPlayer(name, 7, 2000);
 	Player AI = new PokerPlayer("AI", 7, 2000);
 	int r = Keyboard.readInt();
 	for (int i = 0; i < r; i++){
@@ -194,7 +196,7 @@ public class Woo{
 	    double userBalance = user.getBalance();
 	    double AIBalance = AI.getBalance();
 	    if (s == 1){
-		user = new PokerPlayer("User",7,userBalance);
+		user = new PokerPlayer(name,7,userBalance);
 		AI = new PokerPlayer("AI", 7, AIBalance);
 		System.out.println("How much do you want the ante to be for each round?");
 		ante = Keyboard.readDouble();
@@ -350,7 +352,7 @@ public class Woo{
 		System.out.println("AI's Current Balance: " + AI.getBalance());
 	    }
 	    else if (s == 2){
-		user = new BlackjackPlayer("User", 8, userBalance);
+		user = new BlackjackPlayer(name, 8, userBalance);
 		AI = new BlackjackPlayer("AI", 8, AIBalance);
 	    }
 	    else{

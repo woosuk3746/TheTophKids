@@ -29,8 +29,10 @@ public class Player{//this class will eventually be abstract
     public String toString(){
 	String retStr = name + ": ";
 	for (Card c: hand){
-	    retStr += c + ", ";
-	}
+        if(c != null){
+                retStr += c + ", ";
+            }
+	}    
 	return retStr.substring(0,retStr.length()-2);
     }
     public double getBalance(){

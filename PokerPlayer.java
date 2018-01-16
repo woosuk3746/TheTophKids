@@ -178,8 +178,10 @@ public class PokerPlayer extends Player{
 		if (temp[i].getValue() == temp[i + 1].getValue()){
 		    if (temp[i + 1].getValue() != temp[i + 2].getValue()){
 			for (int j = i + 1; j < temp.length - 1; j++){
-			    if (temp[j].getValue() == temp[j + 1].getValue()){
-				return true;
+			    if (temp[j] != null && temp[j + 1] != null){
+				if (temp[j].getValue() == temp[j + 1].getValue()){
+				    return true;
+				}
 			    }
 			}
 		    }
@@ -204,6 +206,18 @@ public class PokerPlayer extends Player{
             for (int i = temp.length - 2; i >= 0; i--){
                if (temp[i] != null && temp[i + 1] != null){
                     if (temp[i + 1].getValue() == temp[i].getValue()){
+                        return temp[i].getValue();
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+    public int highestThreeOfAKind(){
+        if (isThreeOfAKind()){
+            for (int i = temp.length - 3; i >= 0; i--){
+		if (temp[i] != null && temp[i + 1] != null && temp[i + 2] != null){
+                    if (temp[i + 1].getValue() == temp[i].getValue() && temp[i + 2].getValue() == temp[i + 1].getValue()){
                         return temp[i].getValue();
                     }
                 }

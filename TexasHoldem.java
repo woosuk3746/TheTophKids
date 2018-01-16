@@ -70,7 +70,7 @@ public class TexasHoldem extends CasinoGame{
             return user;
         }
 	else if (AI.isThreeOfAKind() && user.isThreeOfAKind()){
-            if (user.highestValue() > AI.highestValue()){
+            if (user.highestThreeOfAKind() > AI.highestThreeOfAKind()){
 		return user;
             }
             return AI;
@@ -112,7 +112,7 @@ public class TexasHoldem extends CasinoGame{
             return AI;
 	}
     }
-
+    
     public static void main(String[] args){
 	
     }

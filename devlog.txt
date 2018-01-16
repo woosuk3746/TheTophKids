@@ -33,25 +33,40 @@ Flesh out each category whenever necessary, appropriate.
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Initially, we thought the most difficult part of this project was going to be
-incorporating betting. So at first, all we wanted to do was to make sure that for poker it returned the right hand that a person hand and the correct highest value was returned and for Blackjack, that the isBusted() method worked and the pesky ace (could be one or 11) was resolved. That was done earlier that we expected, so we really got a head start on betting and looking back, we felt like we needed every bit of that.
+incorporating betting. So at first, all we wanted to do was to make sure that
+for poker it returned the right hand that a person hand and the correct highest
+value was returned and for Blackjack, that the isBusted() method worked and the
+pesky ace (could be one or 11) was resolved. That was done earlier that we
+expected, so we really got a head start on betting and looking back, we felt
+like we needed every bit of that.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-For PokerPlayer, something that was very annoying was that no matter what the pairs the AI and user had were if they both had a pair, the AI would always win by default because we made it so that the AI would win all potential ties. We fixed this problem by adding a highestPair() method.
+For PokerPlayer, something that was very annoying was that no matter what the
+pairs the AI and user had were if they both had a pair, the AI would always win
+by default because we made it so that the AI would win all potential ties. We
+fixed this problem by adding a highestPair() method.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+Many of us had a basic grasp of these games but didn't know how to incorporate
+betting into them. Some of us only knew how to play Chinese poker and not
+Texas Hold'em. So learning how betting really worked in both Blackjack and
+Texas Hold'em was something we felt that was very interesting.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We originally planned on having all the checking if something is a hand is a certain combination in the TexasHoldem class which extends CasinoGame. Once we got started in coding it, we realized that it was a good idea to have a PokerPlayer method that extends Player instead of CasinoGame. We did this because the constructor calls were very similar so just using the super keyboard would have gotten it done. 
-<etc>
-<etc>
+We originally planned on having all the checking if something is a hand is a
+certaincombination in the TexasHoldem class which extends CasinoGame. Once we
+got started in coding it, we realized that it was a good idea to have a
+PokerPlayer method that extends Player instead of CasinoGame. We did this
+because the constructor calls were very similar so just using the super
+keyword would have gotten it done. 
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<tales of wisdom gained...>
+We made way to many mid-developmental changes during our final project,
+particularly with the poker player. When we were working on incorporating betting for all situations, we realized how arduous and unnecessary it was to repetitively write the exact same code. Making a flow chart at this step would have helped but instead we delved right into the code and we could have saved time. Otherwise, we planned this out very well and it went out as planned.
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

@@ -227,6 +227,7 @@ public class Woo{
 		int t = Keyboard.readInt();
 		//Does following if user decides to fold
 		if (t == 1){
+		    System.out.println("The AI won!");
 		    AI.deposit(pot);
 		}
 		//Does following if user decides to call
@@ -239,7 +240,7 @@ public class Woo{
 		    AIGen.bubbleSort();
 		    userGen.bubbleSort();
 		    double rand = 14.0 * Math.random();
-		    System.out.println(AIGen.highestValue());
+		    //System.out.println(AIGen.highestValue());
 		    if (AIGen.isPair()){
 			if (rand < 13.5){
 			    System.out.println("The AI calls!");
@@ -249,9 +250,7 @@ public class Woo{
 			    if (!folded){
 				checkWinner(userGen, AIGen);
 			    }
-			    if (TexasHoldem.play(userGen, AIGen).equals(userGen)){
-				user.deposit(pot);
-			    }
+			   
 			}
 			else{
 			    System.out.println("The AI folds!");

@@ -193,19 +193,20 @@ public class Woo{
 	System.out.println("Please enter your name.");
 	String name = Keyboard.readString();
 	System.out.println("How many rounds of casino games do you want to play?");
-	System.out.println("Both the user and the AI will start of with a total of 2000 dollars worth of chips");
 	Player user = new Player(name, 7, 2000);
 	Player AI = new Player("AI", 7, 2000);
 	int r = Keyboard.readInt();
 	for (int i = 0; i < r; i++){
 	    System.out.println("Choose Your Game (Enter the number of the game)");
 	    System.out.println("1. Texas Hold 'Em");
-	    System.out.println("2. Blackjack");
-	    System.out.println("Both the user and the AI will start of with a total of 2000 dollars worth of chips"); 
+	    System.out.println("2. Blackjack"); 
 	    int s = Keyboard.readInt();
 	    double userBalance = user.getBalance();
 	    double AIBalance = AI.getBalance();
+        
+        //texas holdem
 	    if (s == 1){
+        System.out.println("Both the user and the AI will start of with a total of 2000 dollars worth of chips");
 		user = new PokerPlayer(name,7,userBalance);
 		AI = new PokerPlayer("AI", 7, AIBalance);
 		System.out.println("How much do you want the ante to be for each round?");
@@ -363,11 +364,27 @@ public class Woo{
 		System.out.println("User's Current Balance: " + user.getBalance());
 		System.out.println("AI's Current Balance: " + AI.getBalance());
 	    }
+        
+        //blackjack
 	    else if (s == 2){
-				System.out.println("Initiating game...\n");
-				BlackjackPlayer userB = new BlackjackPlayer("User", 20, userBalance);
-				BlackjackPlayer dealer = new BlackjackPlayer("Dealer", 20, AIBalance);
-				
+                
+				System.out.println("You will start out with 2000 dollars. You are up against a dealer!");
+				BlackjackPlayer userB = new BlackjackPlayer(name, 20, userBalance);
+				BlackjackPlayer dealer = new BlackjackPlayer("Dealer", 20, AIBalance);     
+            
+                
+                System.out.println("How much would you like to bet?");
+                    int betAmt = Keyboard.readInt();
+                
+                
+                
+                while(! ( (betAmt <= userB.getBalance()) && (betAmt >0) ) ){
+                    System.out.println("Please enter a valid betting amount. Remember that your betting cap is " + userB.getBalance() + " dollars.");
+                    betAmt = Keyboard.readInt();                
+                }
+                userB.withdraw(betAmt);
+                
+            
 				CasinoGame blackjackGame = new CasinoGame();
 				blackjackGame.makeADeck();
 				blackjackGame.shuffle();
@@ -377,21 +394,26 @@ public class Woo{
 				dealer.addCard(blackjackGame.deck[50]);
 				System.out.println("Cards dealt! \n\n");
 				System.out.println(userB);
+            
+                
 				if(userB.isBlackjack()) {
 					System.out.println("You have blackjack!");//player has blackjack
 					if(!(dealer.isBlackjack())) {
 						System.out.println(dealer);
-						System.out.println("Congratulations you win!");//player but not dealer has blackjack
+						System.out.println("Congratulations you win! The amount you bet is doubled and deposited to your balance.");//player but not dealer has blackjack
+                        userB.deposit(betAmt * 2);
 					}
 					else {
 						System.out.println(dealer);
-						System.out.println("Unfortunately the dealer has blackjack too. Nobody wins");//both blackjack, tie
+						System.out.println("Unfortunately the dealer has blackjack too. Nobody wins. The money you bet will return to your balance.");//both blackjack, tie
+                        userB.deposit(betAmt);
 					}
 				}
 				else {
 					if(dealer.isBlackjack()) {
 						System.out.println(dealer);
-						System.out.println("Unfortunately the dealer has blackjack and you don't. The dealer wins.");//Dealer blackjack
+						System.out.println("Unfortunately the dealer has blackjack and you don't. The dealer wins. You now lose twice the amount you bet.");//Dealer blackjack
+                        userB.withdraw(betAmt * 2);
 					}
 					else {
 						System.out.println("\nThe dealer's face-up card: " + dealer.hand[0]);
@@ -415,8 +437,9 @@ public class Woo{
 								break;
 							}
 						}
-						if(userB.isBusted())								
-						System.out.println("Unfortunately you've gone bust, the dealer wins.");
+						if(userB.isBusted()){								
+						System.out.println("Unfortunately the dealer has blackjack and you don't. The dealer wins. You now lose twice the amount you bet.");
+                        userB.withdraw(betAmt * 2);}
 						else {
 							System.out.println("\nThe dealer's other card: " + dealer.hand[0]);
 							System.out.println(dealer);
@@ -437,19 +460,22 @@ public class Woo{
 								System.out.println("\nThe dealer's final total: " + dealer.getTotal());
 								System.out.println("Because the dealer's total is 17 or more, he stands.");
 								if(userB.getTotal() > dealer.getTotal()) {
-									System.out.println("\nCongratulations, your final total is larger than the dealer's final total.\nYou win!");
+									System.out.println("\nCongratulations, your final total is larger than the dealer's final total.\nYou win!\nThe amount you bet is doubled and deposited to your balance.");
+                                    userB.deposit(betAmt * 2);
 									System.out.println("\nYour final total: " + userB.getTotal() + "\nThe dealer's final total: " + dealer.getTotal());
 									System.out.println(userB);
 									System.out.println(dealer);
 								}
 								else if(userB.getTotal() < dealer.getTotal()) {
-									System.out.println("\nUnfortunately your final total is smaller than the dealer's final total.\nThe dealer wins.");
+									System.out.println("\nUnfortunately your final total is smaller than the dealer's final total.\nThe dealer wins.\nYou now lose twice the amount you bet.");
+                                    userB.withdraw(betAmt * 2);
 									System.out.println("\nYour final total: " + userB.getTotal() + "\nThe dealer's final total: " + dealer.getTotal());
 									System.out.println(userB);
 									System.out.println(dealer);
 								}
 								else {
-									System.out.println("\nYour final total is equal to the dealer's final total.\nNobody wins.");
+									System.out.println("\nYour final total is equal to the dealer's final total.\nNobody wins.\nThe amount you bet will return to your balance.");
+                                    userB.deposit(betAmt);
 								}
 							}
 						}

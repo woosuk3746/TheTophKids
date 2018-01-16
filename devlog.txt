@@ -88,5 +88,7 @@ Aidan Griffin : added basic template of playing poker capibility in terminal.
 Got it to successfully print out the hand the user had succesfully
 Woosuk/Aidan : worked on TexasHoldem.java's play method which returns the winner of a game. We can and probably should change the name of the method to something more suit-able(no pun intended)
 ==============================================================
-2018-01-13
-
+2018-01-15
+Andrew Shao: made blackjack compatible with Woo.java
+Woosuk Lee: added betting mechanism to the blackjack game and edited some minor displayings on the terminal.
+Aidan Griffin: made some minor changes and moved the methods in TexasHoldem.java into PokerPlayer.java because it seemed pointless to have TexasHoldem.java

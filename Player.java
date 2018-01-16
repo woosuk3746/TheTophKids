@@ -2,7 +2,7 @@ public class Player{//this class will eventually be abstract
     protected Card[] hand;
     protected int rank;
     protected double balance;
-    private String name;
+    protected String name;
     protected int size;
     private int currentCard;
     public Player(String n, int s, double b){
@@ -29,8 +29,10 @@ public class Player{//this class will eventually be abstract
     public String toString(){
 	String retStr = name + ": ";
 	for (Card c: hand){
-	    retStr += c + ", ";
-	}
+	    if (c != null){
+                retStr += c + ", ";
+            }
+	}    
 	return retStr.substring(0,retStr.length()-2);
     }
     public double getBalance(){
@@ -38,11 +40,18 @@ public class Player{//this class will eventually be abstract
     }
     public void deposit(double amnt){
 	balance += amnt;
+	//System.out.println("This is a deposit.");
+	//System.out.print(" Name: " + name);
+	//System.out.print(" Balance: " + balance);
+	//System.out.println(" amnt: " + amnt);
     }
     public void withdraw(double amnt){
         balance -= amnt;
+	//System.out.println("This is a withdrawal.");
+	//System.out.println(" Name: " + name);
+	//System.out.println(" Balance: " + balance);
+	//System.out.println(" amnt: " + amnt);
     }
-    //public abstract void evaluate();
     public static void main(String[] args){
 	Player Aidan = new Player("Aidan", 4, 2000);
 	Aidan.addCard(new Card((int) (Math.random() * 52)));

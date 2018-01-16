@@ -4,6 +4,9 @@ public class PokerPlayer extends Player{
 	super(n,s,b);
 	temp = new Card[s];
     }
+    public String getName(){
+	return name;
+    }
     public void bubbleSort(){
 	//copies elements of hand into temp
 	for (int k = 0; k < hand.length; k++){
@@ -12,11 +15,13 @@ public class PokerPlayer extends Player{
 	int numPasses = hand.length - 1;
 	for (int i = 0; i < numPasses; i++){
 	    for (int j = 0; j < numPasses; j++){
-		if (temp[j].getValue() > temp[j + 1].getValue()){
-		    Card t = temp[j + 1];
-		    temp[j + 1] = temp[j];
-		    temp[j] = t;
-		}		
+		if (temp[j] != null && temp[j + 1] != null){
+		    if (temp[j].getValue() > temp[j + 1].getValue()){
+			Card t = temp[j + 1];
+			temp[j + 1] = temp[j];
+			temp[j] = t;
+		    }		
+		}
 	    }
 	}
     }
@@ -39,7 +44,7 @@ public class PokerPlayer extends Player{
 	int highestValue = 1;
 	for (int i = 0; i < temp.length; i++){
 	    for (int j = i + 1; j < temp.length; j++){
-		if (temp[i] != null){
+		if (temp[i] != null && temp[j] != null){
 		    //System.out.println("At i = " + i + ":" + temp[i].getValue());
 		    //System.out.println("At j = " + j + ":" + temp[j].getValue());
 		    if (temp[i].getValue() == temp[j].getValue()){
@@ -65,52 +70,63 @@ public class PokerPlayer extends Player{
 	int spadeCounter = 0;
 	int clubCounter = 0;
 	for (int i = 0; i < temp.length; i++){
-	    if (temp[i].getSuit().equals("hearts")){
-		heartCounter++;
-		//System.out.println(heartCounter);
-	    }
-	    if (temp[i].getSuit().equals("diamonds")){
-                diamondCounter++;
-            }
-	    if (temp[i].getSuit().equals("spades")){
-                spadeCounter++;
-            }
-	    if (temp[i].getSuit().equals("clubs")){
-                clubCounter++;
-            }
-	}
-	if (clubCounter >= 5){
-	    for (int j = 0; j < temp.length; j++){
-		if (!temp[j].getSuit().equals("club")){
-		    //temp[j] = null;
+	    if (temp[i] != null){
+		if (temp[i].getSuit().equals("hearts")){
+		    heartCounter++;
+		    //System.out.println(heartCounter);
+		}
+		if (temp[i].getSuit().equals("diamonds")){
+		    diamondCounter++;
+		}
+		if (temp[i].getSuit().equals("spades")){
+		    spadeCounter++;
+		}
+		if (temp[i].getSuit().equals("clubs")){
+		    clubCounter++;
 		}
 	    }
-	    return true;
+	    if (clubCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("club")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+	    }
+	    if (heartCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("heart")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+	    }
+	    if (spadeCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("spade")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+	    }
+	    if (diamondCounter >= 5){
+		for (int j = 0; j < temp.length; j++){
+		    if (temp[j] != null){
+			if (!temp[j].getSuit().equals("diamond")){
+			    //temp[j] = null;
+			}
+		    }
+		    return true;
+		}
+		return false;
+	    }
 	}
-	if (heartCounter >= 5){
-            for (int j = 0; j < temp.length; j++){
-                if (!temp[j].getSuit().equals("heart")){
-                    //temp[j] = null;
-                }
-            }
-            return true;
-        }
-	if (spadeCounter >= 5){
-            for (int j = 0; j < temp.length; j++){
-                if (!temp[j].getSuit().equals("spade")){
-                    //temp[j] = null;
-                }
-            }
-            return true;
-        }
-	if (diamondCounter >= 5){
-            for (int j = 0; j < temp.length; j++){
-                if (!temp[j].getSuit().equals("diamond")){
-                    //temp[j] = null;
-                }
-            }
-            return true;
-        }
 	return false;
     }
     public boolean isStraight(){
@@ -120,18 +136,20 @@ public class PokerPlayer extends Player{
 	    //System.out.println("current index: " + i);
 	    //System.out.println("current card value: " + temp[i].getValue());
 	    //System.out.println("next card value: " + temp[i + 1].getValue());
-	    if (temp[i + 1].getValue() == temp[i].getValue() + 1){
-		if (counter == 0){
-		    arr[counter] = temp[i];
+	    if (temp[i] != null && temp[i + 1] != null){
+		if (temp[i + 1].getValue() == temp[i].getValue() + 1){
+		    if (counter == 0){
+			arr[counter] = temp[i];
+		    }
+		    counter++;
+		    arr[counter] = temp[i + 1];
+		    //System.out.println(counter);
+		    //System.out.println(arr[counter]);
 		}
-		counter++;
-		arr[counter] = temp[i + 1];
-		//System.out.println(counter);
-		//System.out.println(arr[counter]);
-	    }
-	    else if (temp[i + 1].getValue() != temp[i].getValue()){
-		if (counter < 4){
-		    counter = 0;
+		else if (temp[i + 1].getValue() != temp[i].getValue()){
+		    if (counter < 4){
+			counter = 0;
+		    }
 		}
 	    }
 	}
@@ -156,11 +174,15 @@ public class PokerPlayer extends Player{
     }
     public boolean isTwoPair(){
 	for (int i = 0; i < temp.length - 2; i++){
-	    if (temp[i].getValue() == temp[i + 1].getValue()){
-		if (temp[i + 1].getValue() != temp[i + 2].getValue()){
-		    for (int j = i + 1; j < temp.length - 1; j++){
-			if (temp[j].getValue() == temp[j + 1].getValue()){
-			    return true;
+	    if (temp[i] != null && temp[i + 1] != null && temp[i + 2] != null){
+		if (temp[i].getValue() == temp[i + 1].getValue()){
+		    if (temp[i + 1].getValue() != temp[i + 2].getValue()){
+			for (int j = i + 1; j < temp.length - 1; j++){
+			    if (temp[j] != null && temp[j + 1] != null){
+				if (temp[j].getValue() == temp[j + 1].getValue()){
+				    return true;
+				}
+			    }
 			}
 		    }
 		}
@@ -169,19 +191,7 @@ public class PokerPlayer extends Player{
 	return false;
     }
     public boolean isPair(){
-	if (numberOfKind() == 2){
-	    return true;
-	}
-	for (int i = 0; i < temp.length - 2; i++){
-	    if (temp[i] != null){
-		if (temp[i].getValue() == temp[i + 1].getValue()){
-		    if (temp[i + 1].getValue() != temp[i + 2].getValue()){
-			return true;
-		    }
-		}
-	    }
-	}
-	return false;
+	return (numberOfKind() == 2);
     }
     public int highestValue(){
 	for (int i = temp.length - 1; i >= 0; i--){
@@ -191,13 +201,36 @@ public class PokerPlayer extends Player{
 	}
 	return 0;
     }
+    public int highestPair(){
+        if (isPair()){
+            for (int i = temp.length - 2; i >= 0; i--){
+               if (temp[i] != null && temp[i + 1] != null){
+                    if (temp[i + 1].getValue() == temp[i].getValue()){
+                        return temp[i].getValue();
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+    public int highestThreeOfAKind(){
+        if (isThreeOfAKind()){
+            for (int i = temp.length - 3; i >= 0; i--){
+		if (temp[i] != null && temp[i + 1] != null && temp[i + 2] != null){
+                    if (temp[i + 1].getValue() == temp[i].getValue() && temp[i + 2].getValue() == temp[i + 1].getValue()){
+                        return temp[i].getValue();
+                    }
+                }
+            }
+        }
+        return 0;
+    }
     public void printTemp(){
 	for (int i = 0; i < temp.length; i++){
 	    System.out.print(temp[i] + " ");
 	}
 	System.out.println();
     }
-    
     public static void main(String[] args){
 	Player Aidan = new PokerPlayer("Aidan", 7, 8000);
         Aidan.addCard(new Card(24));

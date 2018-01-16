@@ -199,6 +199,18 @@ public class PokerPlayer extends Player{
 	}
 	return 0;
     }
+    public int highestPair(){
+        if (isPair()){
+            for (int i = temp.length - 2; i >= 0; i--){
+               if (temp[i] != null && temp[i + 1] != null){
+                    if (temp[i + 1].getValue() == temp[i].getValue()){
+                        return temp[i].getValue();
+                    }
+                }
+            }
+        }
+        return 0;
+    }
     public void printTemp(){
 	for (int i = 0; i < temp.length; i++){
 	    System.out.print(temp[i] + " ");

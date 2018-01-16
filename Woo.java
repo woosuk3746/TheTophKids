@@ -394,7 +394,7 @@ public class Woo{
 				System.out.println("Cards dealt! \n\n");
 				System.out.println(userB);
             
-                
+               
 				if(userB.isBlackjack()) {
 					System.out.println("You have blackjack!");//player has blackjack
 					if(!(dealer.isBlackjack())) {
@@ -451,7 +451,8 @@ public class Woo{
 								dealerCtr -= 1;
 							}
 							if(dealer.isBusted()) {
-								System.out.println("\nThe dealer has busted! You win!");
+								System.out.println("\nThe dealer has busted! You win! The amount you bet is doubled and deposited to your balance.");
+								userB.deposit(betAmt * 2);
 								System.out.println(dealer);
 								System.out.println("\nThe dealer's total: " + dealer.getTotal());
 							}

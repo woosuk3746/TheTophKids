@@ -82,7 +82,7 @@ public class TexasHoldem extends CasinoGame{
             return user;
         }
 	else if (AI.isTwoPair() && user.isTwoPair()){
-            if (user.highestValue() > AI.highestValue()){
+            if (user.highestPair() > AI.highestPair()){
 		return user;
             }
             return AI;
@@ -94,7 +94,7 @@ public class TexasHoldem extends CasinoGame{
             return user;
         }
 	else if (AI.isPair() && user.isPair()){
-	    if (user.highestValue() > AI.highestValue()){
+	    if (user.highestPair() > AI.highestPair()){
                 return user;
             }
             return AI;

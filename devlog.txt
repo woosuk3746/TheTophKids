@@ -32,22 +32,20 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<Wow, we so BOSS bc...>
+Initially, we thought the most difficult part of this project was going to be
+incorporating betting. So at first, all we wanted to do was to make sure that for poker it returned the right hand that a person hand and the correct highest value was returned and for Blackjack, that the isBusted() method worked and the pesky ace (could be one or 11) was resolved. That was done earlier that we expected, so we really got a head start on betting and looking back, we felt like we needed every bit of that.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
->
+For PokerPlayer, something that was very annoying was that no matter what the pairs the AI and user had were if they both had a pair, the AI would always win by default because we made it so that the AI would win all potential ties. We fixed this problem by adding a highestPair() method.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<wow! oo! etc!...>
+
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We changed ___ to ___ bc...
+We originally planned on having all the checking if something is a hand is a certain combination in the TexasHoldem class which extends CasinoGame. Once we got started in coding it, we realized that it was a good idea to have a PokerPlayer method that extends Player instead of CasinoGame. We did this because the constructor calls were very similar so just using the super keyboard would have gotten it done. 
 <etc>
 <etc>
 
@@ -88,7 +86,16 @@ Aidan Griffin : added basic template of playing poker capibility in terminal.
 Got it to successfully print out the hand the user had succesfully
 Woosuk/Aidan : worked on TexasHoldem.java's play method which returns the winner of a game. We can and probably should change the name of the method to something more suit-able(no pun intended)
 ==============================================================
+2018-01-11
+Aidan Griffin: incorporated pre-flop betting and printed out what the user had in has hand at the end
+
+2018-01-13
+Aidan Griffin: made many of the repetitive stuff in Woo.java's main method into their own methods such as playGame and checkHand
+==============================================================
+2018-01-14
+Aidan Griffin: created new variable in Woo called pot which made distributing the money earned by a Pokerplayer properly easier to do
+
 2018-01-15
 Andrew Shao: made blackjack compatible with Woo.java
 Woosuk Lee: added betting mechanism to the blackjack game and edited some minor displayings on the terminal.
-Aidan Griffin: made some minor changes and moved the methods in TexasHoldem.java into PokerPlayer.java because it seemed pointless to have TexasHoldem.java
+Aidan Griffin: made minor changes to how pot was added in Woo.java and moved the methods inTexasHoldem.java into PokerPlayer.java because it seemed pointless to have TexasHoldem.java

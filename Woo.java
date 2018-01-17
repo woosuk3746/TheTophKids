@@ -371,7 +371,7 @@ public class Woo{
 	    /****************************************************************************************************************************************************blackjack****************************************************************************************************************************************************/
 	    else if (s == 2){
             
-		System.out.println("You will start out with 2000 dollars. You are up against a dealer!");
+		System.out.println("You will start out with " + userBalance + " dollars. You are up against a dealer!");
 		user = new BlackjackPlayer(name, 20, userBalance);
 		AI = new BlackjackPlayer("Dealer", 20, AIBalance);
                 System.out.println("How much would you like to bet?");

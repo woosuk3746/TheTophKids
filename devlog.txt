@@ -8,23 +8,7 @@ Casino
 
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
 
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
@@ -85,32 +69,43 @@ particularly with the poker player. When we were working on incorporating bettin
 
 2018-01-08
 --------------------------------------------------------------
-Woosuk Lee : Made Woo.java compilable and runnable with main method and added Keyboard.java for us to incorporate user input
 Aidan Griffin : coded the isFullHouse() and isTwoPair() methods in PokerPlayer(the last two methods we were missing)
+Woosuk Lee : Made Woo.java compilable and runnable with main method and added Keyboard.java for us to incorporate user input
 Andrew Shao : updated our README file
 ==============================================================
 2018-01-09
 --------------------------------------------------------------
+Aidan Griffin : Wrote our flowchart that we handed in
 Woosuk Lee : Wrote our to do checklist
 Andrew Shao: Helped Woosuk craft the to do checklist
-Aidan Griffin : Wrote our flowchart that we handed in
 ==============================================================
 2018-01-10
-Andrew Shao : coded the blackjack game with all its methods and it works!
+--------------------------------------------------------------
 Aidan Griffin : added basic template of playing poker capibility in terminal. 
 Got it to successfully print out the hand the user had succesfully
 Woosuk/Aidan : worked on TexasHoldem.java's play method which returns the winner of a game. We can and probably should change the name of the method to something more suit-able(no pun intended)
+Andrew Shao : coded the blackjack game with all its methods and it works!
 ==============================================================
 2018-01-11
+--------------------------------------------------------------
 Aidan Griffin: incorporated pre-flop betting and printed out what the user had in has hand at the end
-
+==============================================================
 2018-01-13
+--------------------------------------------------------------
 Aidan Griffin: made many of the repetitive stuff in Woo.java's main method into their own methods such as playGame and checkHand
 ==============================================================
 2018-01-14
+--------------------------------------------------------------
 Aidan Griffin: created new variable in Woo called pot which made distributing the money earned by a Pokerplayer properly easier to do
-
+==============================================================
 2018-01-15
-Andrew Shao: made blackjack compatible with Woo.java
-Woosuk Lee: added betting mechanism to the blackjack game and edited some minor displayings on the terminal.
+--------------------------------------------------------------
 Aidan Griffin: made minor changes to how pot was added in Woo.java and moved the methods inTexasHoldem.java into PokerPlayer.java because it seemed pointless to have TexasHoldem.java
+Woosuk Lee: added betting mechanism to the blackjack game and edited some minor displayings on the terminal.
+Andrew Shao: made blackjack compatible with Woo.java
+==============================================================
+2018-01-16
+--------------------------------------------------------------
+Aidan Griffin: fixed major bug with keeping player balance over several games
+Woosuk Lee: made a small change in betting and fixed small errors in displaying betting messages
+Andrew Shao: fixed error involving Blackjack detection and fixed error in Blackjack display messages

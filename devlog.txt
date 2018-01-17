@@ -108,4 +108,4 @@ Andrew Shao: made blackjack compatible with Woo.java
 --------------------------------------------------------------
 Aidan Griffin: fixed major bug with keeping player balance over several games
 Woosuk Lee: made a small change in betting and fixed small errors in displaying betting messages
-Andrew Shao: fixed error involving Blackjack detection and fixed error in Blackjack display messages
+Andrew Shao: fixed error involving Blackjack detection and fixed errors in Blackjack display messages

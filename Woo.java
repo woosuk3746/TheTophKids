@@ -157,7 +157,7 @@ public class Woo{
 		System.out.println(user);
 		checkOrBet(user, AI);
 		if (!folded){
-		    System.out.println("Here were the community cards");
+		    System.out.println("Here were the community cards: ");
 		    System.out.print(CasinoGame.deck[4] + " ");
 		    System.out.print(CasinoGame.deck[5] + " ");
 		    System.out.print(CasinoGame.deck[6] + " ");
@@ -203,10 +203,13 @@ public class Woo{
 	    int s = Keyboard.readInt();
 	    double userBalance = user.getBalance();
 	    double AIBalance = AI.getBalance();
-        
+	    int counter = 0;//used to insure that the statement below is only called once                                                                
 	    //texas holdem
 	    if (s == 1){
-		System.out.println("Both the user and the AI will start of with a total of 2000 dollars worth of chips");
+		while (counter < 1){
+		    System.out.println("Both the user and the AI will start of with a total of 2000 dollars worth of chips");
+		    counter++;
+		}
 		user = new PokerPlayer(name,7,userBalance);
 		AI = new PokerPlayer("AI", 7, AIBalance);
 		System.out.println("How much do you want the ante to be for each round?");
@@ -299,14 +302,14 @@ public class Woo{
 			d = Keyboard.readDouble();
 		    }
 		    user.withdraw(d);
-		    
+		    pot += d;
 		    System.out.println("The AI is thinking through his options ...\n");
 		    double rand = 14.0 * Math.random();
 		    if (AIGen.isPair()){
 			if (rand < 13.5){
 			    System.out.println("The AI calls!");
-			    AI.withdraw(d + 30);
-			    pot += d + 30;
+			    AI.withdraw(d);
+			    pot += d;
 			    System.out.println(user.getBalance());
 			    playGame(userGen, AIGen);
 			    if (!folded){

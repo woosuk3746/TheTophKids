@@ -34,7 +34,7 @@ public class TexasHoldem extends CasinoGame{
             return user;
         }
 	else if (AI.isFullHouse() && user.isFullHouse()){
-            if (user.highestValue() > AI.highestValue()){
+            if (user.highestThreeOfAKind() > AI.highestThreeOfAKind()){
 		return user;
             }
             return AI;
@@ -73,6 +73,12 @@ public class TexasHoldem extends CasinoGame{
             if (user.highestThreeOfAKind() > AI.highestThreeOfAKind()){
 		return user;
             }
+	    else if (user.highestThreeOfAKind() == AI.highestThreeOfAKind()){
+		if (user.highestValue() > AI.highestValue()){
+		    return user;
+		}
+		return AI;
+	    }
             return AI;
         }
 	else if (AI.isThreeOfAKind()){

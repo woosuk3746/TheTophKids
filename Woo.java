@@ -391,7 +391,7 @@ public class Woo{
 		userB.addCard(blackjackGame.deck[1]);
 		dealer.addCard(blackjackGame.deck[51]);
 		dealer.addCard(blackjackGame.deck[50]);
-		System.out.println("Cards dealt! \n\n");
+		System.out.println("\n\nCards dealt! \n\n");
 		System.out.println(userB);
             
                
@@ -436,9 +436,10 @@ public class Woo{
 				break;
 			    }
 			}
-			if(userB.isBusted()){								
-			    System.out.println("Unfortunately the dealer has blackjack and you don't. The dealer wins. You now lose the amount you bet.");
-			    userB.withdraw(betAmt * 2);}
+			if(userB.isBusted()){
+				System.out.println("\nYour final total: " + userB.getTotal());
+				System.out.println("Unfortunately, you have busted. The dealer wins. You now lose the amount you bet.");
+			    userB.withdraw(betAmt);}
 			else {
 			    System.out.println("\nThe dealer's other card: " + dealer.hand[0]);
 			    System.out.println(dealer);
@@ -481,7 +482,7 @@ public class Woo{
 			}
 		    }
 		}
-		System.out.println("User's Current Balance: " + userB.getBalance());
+		System.out.println("User's Current Balance: " + userB.getBalance() + "\n\n");
 	    }
 	    else{
 		System.out.println("Try again! Enter a proper number!");

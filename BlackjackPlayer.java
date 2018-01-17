@@ -27,7 +27,7 @@ public class BlackjackPlayer extends Player {
     }
     
     public boolean isBlackjack() {
-	return (size == 2 && getTotal() == 21);
+	return (hand[2] == null && getTotal() == 21);
     }
     
     public boolean isBusted() {

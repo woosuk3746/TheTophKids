@@ -91,6 +91,9 @@ public class TexasHoldem extends CasinoGame{
             if (user.highestPair() > AI.highestPair()){
 		return user;
             }
+	    else if (user.highestPair() == AI.highestPair() && user.highestValue() > AI.highestValue()){
+                return user;
+            }
             return AI;
         }
 	else if (AI.isTwoPair()){
@@ -100,9 +103,12 @@ public class TexasHoldem extends CasinoGame{
             return user;
         }
 	else if (AI.isPair() && user.isPair()){
-	    if (user.highestPair() > AI.highestPair()){
-                return user;
+	    if (user.highestPair() > AI.highestPair()){		
+		return user;
             }
+	    else if (user.highestPair() == AI.highestPair() && user.highestValue() > AI.highestValue()){
+		return user;
+	    }
             return AI;
         }
 	else if (AI.isPair()){

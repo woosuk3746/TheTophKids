@@ -196,6 +196,10 @@ public class Woo{
 	Player user = new Player(name, 7, 2000);
 	Player AI = new Player("AI", 7, 2000);
 	int r = Keyboard.readInt();
+	if (r > 100){
+	    r = 10;
+	    System.out.println("You will not be able to finish that many games! # of rounds set to 10");
+	}
 	for (int i = 0; i < r; i++){
 	    System.out.println("Choose Your Game (Enter the number of the game)");
 	    System.out.println("1. Texas Hold 'Em");
